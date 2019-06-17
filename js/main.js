@@ -7,30 +7,10 @@ const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
 
 // global variables
-
-let page = "home"; // Possible values: "home", "intro", "shuffle", "guess", "win", "loose"
-let framesBeforeNextPage = undefined; // undefined means: wait for the user input ; 42 means 42 frames before next page
-let level = 1;
-
-let b1 = new Ball();
-let c1 = new Cup(50, 200, 300, -20, -20, "red");
-let c2 = new Cup(50, 500, 300, +20, -20, "red");
-let c3 = new Cup(50, 700, 300, +30, +25, "red");
+let g = new Game();
 
 function animation() {
-  if (page === "home") {
-    drawHomeScreen();
-  }
-  else if (page === "win") {
-    // TODO
-  }
-  else if (page === "loose") {
-    // TODO
-  }
-  else {
-    drawEverything();
-  }
-
+  drawEverything();
   updateEverything();
 
   window.requestAnimationFrame(animation);
@@ -40,49 +20,19 @@ animation();
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  if (page === "intro") b1.draw(ctx);
-
-  c1.draw(ctx);
-  c2.draw(ctx);
-  c3.draw(ctx);
+  g.draw(ctx);
 }
 
 function updateEverything() {
-  if (Number.isInteger(framesBeforeNextPage)) {
-    framesBeforeNextPage--
-    if (framesBeforeNextPage === 0) {
-      if (page === "intro") {
-        page = "shuffle"
-        framesBeforeNextPage = 200
-      }
-      else if (page === "shuffle") {
-        page = "guess"
-      }
-    }
-  }
-  if (page === "intro") {
-    b1.update()
-  }
-
-
-  if (page === "shuffle") {
-    c1.update();
-    c2.update();
-    c3.update();
-  }
+  g.update();
 }
 
 document.onkeydown = event => {
   console.log(event.keyCode);
+  // TODO: when a key between 1 and 9 is pressed, load a level and start the game
   // Space
   if (event.keyCode === 32) {
-    page = "intro";
-    framesBeforeNextPage = 100
-  }
-  // Enter
-  if (event.keyCode === 13) {
-    page = "intro";
+    g.startGame(1);
   }
 };
 
@@ -90,8 +40,10 @@ function drawHomeScreen() {
   ctx.save();
 
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
   ctx.font = "42px Arial";
-  ctx.fillText("Welcome to my Game", 200, 300);
+  ctx.textAlign = "center";
+  ctx.fillText("Welcome to my Game", CANVAS_WIDTH / 2, 300);
 
   ctx.restore();
 }
@@ -101,3 +53,14 @@ function introScreen() {
 
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
+
+function distance(a, b) {
+  return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+}
+
+document.querySelector("canvas").onclick = e => {
+  let x = (e.layerX / canvas.clientWidth) * CANVAS_WIDTH;
+  let y = (e.layerY / canvas.clientHeight) * CANVAS_HEIGHT;
+
+  g.guess(x, y);
+};

@@ -26,6 +26,9 @@ class Cup {
     this.x += this.vx;
     this.y += this.vy;
 
+    this.vx += Math.random() - 0.5
+    this.vy += Math.random() - 0.5
+
     if (this.right() > CANVAS_WIDTH || this.left() < 0) {
       this.vx *= -1
     }

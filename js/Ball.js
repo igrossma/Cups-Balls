@@ -3,7 +3,7 @@ class Ball {
     this.radius = 30;
     this.x = CANVAS_WIDTH / 5;
     this.y = 200;
-    this.vy = 1;
+    this.vy = 2;
   }
   draw(ctx) {
     ctx.save();
