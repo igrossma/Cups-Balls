@@ -2,11 +2,11 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-// constants
+// Constants
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
 
-// global variables
+// Global Variables
 let g = new Game();
 
 function animation() {
@@ -18,14 +18,21 @@ function animation() {
 
 animation();
 
+// DRAW 
+
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   g.draw(ctx);
 }
 
+// UPDATE
+
 function updateEverything() {
   g.update();
 }
+
+
+// EVENTLISTENER
 
 document.onkeydown = event => {
   console.log(event.keyCode);
@@ -36,23 +43,34 @@ document.onkeydown = event => {
   }
 };
 
+// HOMESCREEN
+
 function drawHomeScreen() {
   ctx.save();
 
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white";
-  ctx.font = "42px Arial";
+  ctx.font = "80px Permanent Marker";
   ctx.textAlign = "center";
-  ctx.fillText("Welcome to my Game", CANVAS_WIDTH / 2, 300);
+  ctx.fillText("FIND THE BALL", CANVAS_WIDTH / 2, 300);
+  ctx.fillStyle = "yellow";
+  ctx.font = "20px Permanent Marker";
+  ctx.fillText("< Enter >", CANVAS_WIDTH/2, 400)
+
 
   ctx.restore();
 }
+
+// INTROSCREEN
 
 function introScreen() {
   ctx.save();
 
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
+
+// MOUSECLICK
+
 
 function distance(a, b) {
   return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);

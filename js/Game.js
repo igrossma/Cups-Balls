@@ -8,14 +8,18 @@ class Game {
     if (level === 1) {
       this.b1 = new Ball();
       this.cups = [
-        new Cup(50, 200, 300, -20, -20, "red"),
-        new Cup(50, 500, 300, +20, -20, "red"),
-        new Cup(50, 700, 300, +30, +25, "red")
+        new Cup(50, 200, 300, +20, -20, "yellow"),
+        new Cup(50, 500, 300, +20, -20, "yellow"),
+        new Cup(50, 800, 300, +30, +20, "yellow"),
+
       ];
     }
     this.page = "intro";
     this.framesBeforeNextPage = 100;
   }
+
+// DRAW the GAME with different Screens
+
   draw(ctx) {
     if (this.page === "home") {
       drawHomeScreen();
@@ -33,6 +37,9 @@ class Game {
       }
     }
   }
+
+ // UPDATE THE GAME
+
   update() {
     if (Number.isInteger(this.framesBeforeNextPage)) {
       this.framesBeforeNextPage--;
@@ -49,15 +56,20 @@ class Game {
       }
     }
   }
+
+  // SWITCH BTW THE DIFFERENT STATES
+
   goToNextPage() {
     if (this.page === "intro") {
       this.page = "shuffle";
-      this.framesBeforeNextPage = 300;
+      this.framesBeforeNextPage = 150;
     } else if (this.page === "shuffle") {
       this.page = "guess";
       this.framesBeforeNextPage = undefined;
     }
   }
+
+
   guess(x, y) {
     if (this.page === "guess") {
       // TODO: find the index of the closest cup (you can use the function distance)

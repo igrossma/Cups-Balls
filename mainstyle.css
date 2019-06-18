@@ -1,12 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Oxygen|Permanent+Marker&display=swap');
 
 body {
-  font-family: "Luckiest Guy";
+  font-family: "Permanent Marker";
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+  background-color: black;
 }
 
 canvas {
