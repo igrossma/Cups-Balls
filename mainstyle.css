@@ -14,4 +14,18 @@ canvas {
   background-color: black;
   max-width: 95vw;
   max-height: 95vh;
+  margin-right: 10px;
 }
+
+#levelName {
+  display: flex;
+  color: white;
+  font-size: 14px;
+}
+
+#levelNumber {
+  display: flex;
+  color: white;
+  font-size: 60px;
+}
+

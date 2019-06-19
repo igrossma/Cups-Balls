@@ -1,11 +1,10 @@
 class Cup {
-    constructor(radius, initialX, initialY, vy, vx, color) {
-
-    this.radius = radius;
+    constructor(initialX, initialY, color) {
+    this.radius = 50;
     this.x = initialX;
     this.y = initialY;
-    this.vx = vx;
-    this.vy = vy;
+    this.vx = Math.floor(Math.random()*60);
+    this.vy = Math.floor(Math.random()*60);
     this.color = color;
   }
 
@@ -46,7 +45,9 @@ top() { return this.y - this.radius }
 bottom() { return this.y + this.radius }
 left() { return this.x - this.radius }
 right() { return this.x + this.radius }
-    
+
+
+
 
   
 }

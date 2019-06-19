@@ -1,14 +1,15 @@
 class Ball {
-  constructor() {
+  constructor(x, y) {
     this.radius = 25;
-    this.x = CANVAS_WIDTH / 5;
-    this.y = 100;
+    this.x = x;
+    this.y = y;
     this.vy = 2;
   }
   draw(ctx) {
     ctx.save();
 
     ctx.fillStyle = "white";
+    ctx.strokeStyle = "red";
 
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
