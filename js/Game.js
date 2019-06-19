@@ -7,8 +7,7 @@ class Game {
     this.isGameOver = false;
   }
   startGame() {
-    // TODO: do DOM manipulation to change the level
-
+    this.isGameOver = false;
     this.page = "intro";
     this.framesBeforeNextPage = 100;
 
@@ -47,19 +46,75 @@ class Game {
         new Cup(150, 300, "#76b39d"),
         new Cup(233, 200, "#76b39d"),
         new Cup(466, 300, "#76b39d"),
-        new Cup(700, 150, "#76b39d"),
+        new Cup(700, 150, "#76b39d")
       ];
     }
 
     if (this.level === 5) {
       this.b1 = new Ball(900, 200);
       this.cups = [
+        new Cup(900, 400, "#fd5f00"),
         new Cup(100, 300, "#fd5f00"),
         new Cup(200, 200, "#fd5f00"),
         new Cup(300, 400, "#fd5f00"),
         new Cup(500, 200, "#fd5f00"),
+        new Cup(700, 400, "#fd5f00")
+      ];
+    }
+
+    if (this.level === 6) {
+      this.b1 = new Ball(900, 200);
+      this.cups = [
+        new Cup(900, 400, "#76b39d"),
+        new Cup(100, 300, "#76b39d"),
+        new Cup(200, 200, "#76b39d"),
+        new Cup(400, 400, "#76b39d"),
+        new Cup(400, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d")
+      ];
+    }
+
+    if (this.level === 7) {
+      this.b1 = new Ball(700, 200);
+      this.cups = [
         new Cup(700, 400, "#fd5f00"),
-        new Cup(900, 400, "#fd5f00")
+        new Cup(600, 300, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 400, "#fd5f00"),
+        new Cup(600, 500, "#fd5f00"),
+        new Cup(600, 500, "#fd5f00"),
+        new Cup(600, 500, "#fd5f00"),
+        new Cup(600, 500, "#fd5f00")
+      ];
+    }
+
+    if (this.level === 8) {
+      this.b1 = new Ball(700, 200);
+      this.cups = [
+        new Cup(700, 400, "#76b39d"),
+        new Cup(100, 300, "#76b39d"),
+        new Cup(200, 200, "#76b39d"),
+        new Cup(400, 400, "#76b39d"),
+        new Cup(400, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d"),
+        new Cup(600, 400, "#76b39d"),
+        new Cup(600, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d"),
+        new Cup(500, 500, "#76b39d")
       ];
     }
   }
@@ -81,14 +136,25 @@ class Game {
     }
 
     if (this.isGameOver) {
-      ctx.save(); // TODO
+      ctx.save();
+
       ctx.globalAlpha = 0.5;
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       ctx.globalAlpha = 1;
       ctx.fillStyle = "white";
-      ctx.font = "80px Arial";
-      ctx.fillText("Game over", 10, 100);
+      ctx.font = "120px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("Game over", CANVAS_WIDTH / 2, 300);
+      ctx.fillStyle = "green";
+      ctx.font = "40px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("try again", CANVAS_WIDTH / 2, 400);
+      ctx.fillStyle = "#fd5f00";
+      ctx.font = "20px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("< space >", CANVAS_WIDTH / 2, 500);
+
       ctx.restore();
     }
   }
@@ -110,6 +176,8 @@ class Game {
         this.cups[i].update();
       }
     }
+    // if (this.isGameOver)
+    //   this.page === "home"
   }
 
   // SWITCH BTW THE DIFFERENT STATES
@@ -123,21 +191,52 @@ class Game {
       this.framesBeforeNextPage = undefined; // The user has to trigger the event to go to the next page
     } else if (this.page === "guess") {
       this.page = "show-winner";
-      this.framesBeforeNextPage = 200;
+      this.framesBeforeNextPage = 100;
+      // play sound
     } else if (this.page === "show-winner") {
-      this.level++;
-      this.startGame();
+      if (this.level < 8) {
+        this.level++;
+        this.startGame();
+      }
+      else {
+        this.page = "win";
+      }
     }
+    //else if (this.isGameOver)
+    //this.framesBeforeNextPage = undefined;
   }
 
   guess(x, y) {
     if (this.page === "guess") {
-      // TODO: find the index of the closest cup (you can use the function distance)
+      let click = {
+        x: x,
+        y: y
+      };
       let iClosestCup = 0;
+      let distMin = Infinity;
 
-       // IF click of client is on a rect from  X and Y of iClosestCup + radius/2 than go 
+      for (let i = 0; i < this.cups.length; i++) {
+        let curDist = distance(click, this.cups[i]);
+        console.log(i, curDist);
+        
+        if (distMin > curDist) {
+          distMin = curDist
+          iClosestCup = i
+        }
 
-      // TEST
+        // WHAT IS THE INDEX of the CUP WITH THE SHORTEST DISTANCE
+
+        // distance(this.cups[i], MouseEvent) <
+
+        // this.cup[i].x
+        // this.cup[i].y
+
+        // mouseclick.x
+        // mouseclick.y
+
+        console.log(this.cups[i]);
+
+      }
       this.cups[iClosestCup].color = "green";
 
       // If the user has selected the right cup

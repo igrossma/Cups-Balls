@@ -3,7 +3,7 @@ class Cup {
     this.radius = 50;
     this.x = initialX;
     this.y = initialY;
-    this.vx = Math.floor(Math.random()*60);
+    this.vx = Math.floor(Math.random()*50);
     this.vy = Math.floor(Math.random()*60);
     this.color = color;
   }
@@ -33,7 +33,7 @@ class Cup {
       this.vx *= -1
     }
     if (this.bottom() > CANVAS_HEIGHT) {
-      this.vy = -10
+      this.vy = -15
     }
     if (this.top() < 0) {
       this.vy = Math.abs(this.vy)

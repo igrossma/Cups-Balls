@@ -11,21 +11,20 @@ const CANVAS_HEIGHT = canvas.height;
 let g = new Game();
 let $levelName = document.getElementById("levelName");
 let $levelNumber = document.getElementById("levelNumber");
-
-
+let $levelMax = document.getElementById("numberOfLevels");
 
 function animation() {
   drawEverything();
   updateEverything();
 
-  showLevel()
+  showLevelNumber();
+  hideLevelName();
   window.requestAnimationFrame(animation);
-  console.log("1")
 }
 
 animation();
 
-// DRAW 
+// DRAW
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,30 +37,23 @@ function updateEverything() {
   g.update();
 }
 
-
 // EVENTLISTENER
+
+function initGame() {
+  console.log("BOOM");
+
+  if (g.page === "home" || g.page === "win" || g.isGameOver) {
+    g.level = 1;
+    g.startGame();
+  }
+}
 
 document.onkeydown = event => {
   console.log(event.keyCode);
-  if (event.keyCode === 32) { // Space
-    g.startGame(1);
+
+  if (event.keyCode === 32) {
+    initGame();
   }
-
-//   if (event.keyCode === 50) {
-//     g.startGame(2)
-//   }
-
-//   if (event.keyCode === 51) {
-//     g.startGame(3)
-//   }
-
-//   if (event.keyCode === 52) {
-//     g.startGame(4)
-//   }
-
-//   if (event.keyCode === 53) {
-//     g.startGame(5)
-//   }
 };
 
 // HOMESCREEN
@@ -73,11 +65,10 @@ function drawHomeScreen() {
   ctx.fillStyle = "white";
   ctx.font = "80px Permanent Marker";
   ctx.textAlign = "center";
-  ctx.fillText("FIND THE BALL", CANVAS_WIDTH / 2, 300);
+  ctx.fillText("Where is the Ironhack ?", CANVAS_WIDTH / 2, 300);
   ctx.fillStyle = "#fd5f00";
   ctx.font = "20px Permanent Marker";
-  ctx.fillText("< SPACE >", CANVAS_WIDTH/2, 400)
-
+  ctx.fillText("< SPACE >", CANVAS_WIDTH / 2, 400);
 
   ctx.restore();
 }
@@ -85,30 +76,29 @@ function drawHomeScreen() {
 // INTROSCREEN
 
 function introScreen() {
-
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
-
 
 // WIN SCREEN
 
 function drawWinScreen() {
-  ctx.save()
-  
-  ctx.fillStyle = "green"
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  ctx.fillStyle = "white";
-  ctx.font = "80px Permanent Marker";
-  ctx.textAlign = "center";
-  ctx.fillText("Started from the Bottom now we are here!", CANVAS_WIDTH / 2, 300);
-  
-  
-  ctx.restore()
+  ctx.save();
 
+  ctx.fillStyle = "green";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  ctx.font = "40px Permanent Marker";
+  ctx.textAlign = "center";
+  ctx.fillText(
+    "Started from the Bottom now we are here!",
+    CANVAS_WIDTH / 2,
+    300
+  );
+
+  ctx.restore();
 }
 
 // MOUSECLICK
-
 
 function distance(a, b) {
   return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
@@ -118,28 +108,25 @@ document.querySelector("canvas").onclick = e => {
   let x = (e.layerX / canvas.clientWidth) * CANVAS_WIDTH;
   let y = (e.layerY / canvas.clientHeight) * CANVAS_HEIGHT;
 
-  console.log (x,y)
+  initGame()
   g.guess(x, y);
-
+  //g.startGame(1)
 };
-
 
 // DOM
 
-function showLevel(){
-  if (g.page === "home"){
-    $levelName.style.display = "none"
-    $levelNumber.style.display = "none"
-  } 
-
-  //else if (g.level === 1)
-  //$levelNumber.innerText = "1"
-  
-  
-  else {
-    $levelName.style.display = "inline"
-    $levelNumber.style.display = "inline"
+function hideLevelName() {
+  if (g.page === "home") {
+    $levelName.style.display = "none";
+    $levelNumber.style.display = "none";
+    $levelMax.style.display = "none";
+  } else {
+    $levelName.style.display = "inline";
+    $levelNumber.style.display = "inline";
+    $levelMax.style.display = "inline";
   }
+}
 
-
+function showLevelNumber() {
+  if (g.page !== "home") $levelNumber.innerHTML = g.level;
 }
