@@ -12,6 +12,7 @@ let $levelName = document.getElementById("levelName");
 let $levelNumber = document.getElementById("levelNumber");
 let $levelMax = document.getElementById("numberOfLevels");
 let $body = document.querySelector("body");
+let $audio = document.getElementById("myAudio")
 
 
 // ANIMATION
@@ -79,11 +80,37 @@ function drawWinScreen() {
   ctx.font = "40px Permanent Marker";
   ctx.textAlign = "center";
   ctx.fillText("Started from the Bottom", CANVAS_WIDTH / 2, 500);
-  ctx.fillText("now we are here!", CANVAS_WIDTH / 2, 575) 
+  ctx.fillText("now we´re here!", CANVAS_WIDTH / 2, 550) 
 
   ctx.restore();
 }
 
+
+// GAME OVER
+
+function drawGameOver() {
+  ctx.save();
+
+      ctx.globalAlpha = 0.8;
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = "#eeeeee";
+      ctx.font = "120px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("Game over", CANVAS_WIDTH / 2, 275);
+      ctx.fillStyle = "#94fc13";
+      ctx.font = "30px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("You lost him, I know it´s hard, but", CANVAS_WIDTH / 2, 350)
+      ctx.fillText("come on, You can do better !! ;)", CANVAS_WIDTH / 2, 400);
+      ctx.fillStyle = "#ff5722";
+      ctx.font = "20px Permanent Marker";
+      ctx.textAlign = "center";
+      ctx.fillText("< space >", CANVAS_WIDTH / 2, 500);
+
+      ctx.restore();
+}
 
 // DOM MANIPULATION
 
@@ -116,14 +143,14 @@ document.querySelector("canvas").onclick = e => {
 
   initGame()
   g.guess(x, y);
+  $audio.play();
+  
 };
 
 
 // EVENTLISTENER
 
 function initGame() {
-  console.log("BOOM");
-
   if (g.page === "home" || g.page === "win" || g.isGameOver) {
     g.level = 1;
     g.startGame();
@@ -131,8 +158,6 @@ function initGame() {
 }
 
 document.onkeydown = event => {
-  console.log(event.keyCode);
-
   if (event.keyCode === 32) {
     initGame();
   }

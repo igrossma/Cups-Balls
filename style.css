@@ -16,31 +16,30 @@ canvas {
   margin-right: 10px;
 }
 
+
 #box {
   display: flex;
-  color: white;
-  /* border: 3px solid red; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
+  color: #eeeeee;
+  flex-direction: row;
+  align-items: center;
 }
 
 #levelName {
   display: flex;
-  color: white;
+  color: #eeeeee;
   font-size: 14px;
 }
 
 #levelNumber {
   display: flex;
-  color: white;
+  color: #eeeeee;
   font-size: 80px;
 }
 
 #numberOfLevels {
   display: flex;
-  /* align-self: auto; */
-  color: white;
-  font-size: 28px;
+  color: #eeeeee;
+  font-size: 14px;
 }
 
 

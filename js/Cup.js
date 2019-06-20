@@ -46,8 +46,4 @@ bottom() { return this.y + this.radius }
 left() { return this.x - this.radius }
 right() { return this.x + this.radius }
 
-
-
-
-  
 }

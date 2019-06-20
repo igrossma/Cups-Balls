@@ -1,7 +1,6 @@
 class Game {
   constructor() {
-    this.score = 0;
-    this.page = "home"; // Possible values: "home", "intro", "shuffle", "guess", "win", "loose"
+    this.page = "home";
     this.framesBeforeNextPage = undefined; // undefined means: wait for the user input ; 42 means 42 frames before next this.page
     this.level = 1;
     this.isGameOver = false;
@@ -136,29 +135,8 @@ class Game {
         this.cups[i].draw(ctx);
       }
     }
-
     if (this.isGameOver) {
-      ctx.save();
-
-      ctx.globalAlpha = 0.8;
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = "#eeeeee";
-      ctx.font = "120px Permanent Marker";
-      ctx.textAlign = "center";
-      ctx.fillText("Game over", CANVAS_WIDTH / 2, 275);
-      ctx.fillStyle = "#94fc13";
-      ctx.font = "30px Permanent Marker";
-      ctx.textAlign = "center";
-      ctx.fillText("You lost him, I know it is hard, but", CANVAS_WIDTH / 2, 350)
-      ctx.fillText("come on, You can do better!", CANVAS_WIDTH / 2, 400);
-      ctx.fillStyle = "#ff5722";
-      ctx.font = "20px Permanent Marker";
-      ctx.textAlign = "center";
-      ctx.fillText("< space >", CANVAS_WIDTH / 2, 500);
-
-      ctx.restore();
+      drawGameOver();
     }
   }
 
@@ -193,7 +171,6 @@ class Game {
     } else if (this.page === "guess") {
       this.page = "show-winner";
       this.framesBeforeNextPage = 150;
-      // play sound
     } else if (this.page === "show-winner") {
       if (this.level < 7) {
         this.level++;
@@ -216,7 +193,6 @@ class Game {
 
       for (let i = 0; i < this.cups.length; i++) {
         let curDist = distance(click, this.cups[i]);
-        console.log(i, curDist);
         
         if (distMin > curDist) {
           distMin = curDist
@@ -224,8 +200,6 @@ class Game {
         }
       }
       
-
-      // If the user has selected the right cup
       if (iClosestCup === 0) {
         this.goToNextPage();
         this.cups[iClosestCup].color = "#94fc13";
@@ -233,7 +207,7 @@ class Game {
         this.cups[iClosestCup].color = "red";
         this.cups[0].color = "#94fc13";
         this.isGameOver = true;
-
+        $audio.pause();
       }
     }
   }
