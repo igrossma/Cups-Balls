@@ -25,7 +25,6 @@ class Ball {
     let size = 2.5 * this.radius;
     ctx.drawImage(this.img, -size / 2, -size / 2, size, size);
 
-
     ctx.restore();
   }
 

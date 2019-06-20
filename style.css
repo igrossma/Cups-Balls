@@ -33,7 +33,7 @@ canvas {
 #levelNumber {
   display: flex;
   color: #eeeeee;
-  font-size: 80px;
+  font-size: 100px;
 }
 
 #numberOfLevels {

@@ -55,7 +55,7 @@ function drawHomeScreen() {
   ctx.fillStyle = "#004d61";
   ctx.font = "80px Permanent Marker";
   ctx.textAlign = "center";
-  ctx.fillText("Where is Maxance ?", CANVAS_WIDTH / 2, 300);
+  ctx.fillText("Where is Maxence ?", CANVAS_WIDTH / 2, 300);
   ctx.fillStyle = "#ff5722";
   ctx.font = "20px Permanent Marker";
   ctx.fillText("< SPACE >", CANVAS_WIDTH / 2, 500);
