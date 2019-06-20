@@ -18,6 +18,8 @@ canvas {
 
 #box {
   display: flex;
+  color: white;
+  /* border: 3px solid red; */
   /* flex-direction: column; */
   /* justify-content: center; */
 }
@@ -36,7 +38,7 @@ canvas {
 
 #numberOfLevels {
   display: flex;
-  align-self: auto;
+  /* align-self: auto; */
   color: white;
   font-size: 28px;
 }

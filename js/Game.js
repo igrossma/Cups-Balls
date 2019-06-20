@@ -140,17 +140,19 @@ class Game {
     if (this.isGameOver) {
       ctx.save();
 
+      ctx.globalAlpha = 0.8;
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       ctx.globalAlpha = 1;
       ctx.fillStyle = "#eeeeee";
       ctx.font = "120px Permanent Marker";
       ctx.textAlign = "center";
-      ctx.fillText("Game over", CANVAS_WIDTH / 2, 300);
+      ctx.fillText("Game over", CANVAS_WIDTH / 2, 275);
       ctx.fillStyle = "#94fc13";
       ctx.font = "30px Permanent Marker";
       ctx.textAlign = "center";
-      ctx.fillText("Come on, You can be better!", CANVAS_WIDTH / 2, 400);
+      ctx.fillText("You lost him, I know it is hard, but", CANVAS_WIDTH / 2, 350)
+      ctx.fillText("come on, You can do better!", CANVAS_WIDTH / 2, 400);
       ctx.fillStyle = "#ff5722";
       ctx.font = "20px Permanent Marker";
       ctx.textAlign = "center";
@@ -221,13 +223,15 @@ class Game {
           iClosestCup = i
         }
       }
-      this.cups[iClosestCup].color = "#94fc13";
+      
 
       // If the user has selected the right cup
       if (iClosestCup === 0) {
         this.goToNextPage();
+        this.cups[iClosestCup].color = "#94fc13";
       } else {
-        this.cups.color = "red";
+        this.cups[iClosestCup].color = "red";
+        this.cups[0].color = "#94fc13";
         this.isGameOver = true;
 
       }
