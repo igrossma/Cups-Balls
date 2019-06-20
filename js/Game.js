@@ -7,78 +7,80 @@ class Game {
     this.isGameOver = false;
   }
   startGame() {
+    $body.style.backgroundColor = "black";
     this.isGameOver = false;
     this.page = "intro";
     this.framesBeforeNextPage = 100;
 
     if (this.level === 1) {
-      this.b1 = new Ball(300, 150);
+      this.b1 = new Ball(300, 150, 0, 2);
       this.cups = [
-        new Cup(300, 350, "#fd5f00"),
-        new Cup(600, 350, "#76b39d"),
-        new Cup(900, 350, "#76b39d")
+        new Cup(300, 350, "#ff5722"),
+        new Cup(600, 350, "#004d61"),
+        new Cup(900, 350, "#eeeeee")
       ];
     }
 
     if (this.level === 2) {
-      this.b1 = new Ball(300, 150);
+      this.b1 = new Ball(300, 150, 0, 2);
       this.cups = [
-        new Cup(300, 350, "#76b39d"),
-        new Cup(600, 350, "#76b39d"),
-        new Cup(900, 350, "#76b39d")
+        new Cup(300, 350, "#eeeeee"),
+        new Cup(600, 350, "#eeeeee"),
+        new Cup(900, 350, "#eeeeee")
       ];
     }
 
     if (this.level === 3) {
-      this.b1 = new Ball(200, 150);
+      this.b1 = new Ball(200, 550, 0, -2);
       this.cups = [
-        new Cup(200, 350, "#fd5f00"),
-        new Cup(466, 350, "#fd5f00"),
-        new Cup(730, 350, "#fd5f00"),
-        new Cup(1000, 350, "#fd5f00")
+        new Cup(200, 350, "#ff5722"),
+        new Cup(466, 350, "#ff5722"),
+        new Cup(730, 350, "#ff5722"),
+        new Cup(1000, 350, "#ff5722")
       ];
     }
 
     if (this.level === 4) {
-      this.b1 = new Ball(850, 200);
+      this.b1 = new Ball(850, 150, 0 , 2);
       this.cups = [
-        new Cup(850, 400, "#76b39d"),
-        new Cup(150, 300, "#76b39d"),
-        new Cup(233, 200, "#76b39d"),
-        new Cup(466, 300, "#76b39d"),
-        new Cup(700, 150, "#76b39d")
+        new Cup(850, 350, "#eeeeee"),
+        new Cup(600, 350, "#eeeeee"),
+        new Cup(350, 350, "#eeeeee"),
+        new Cup(600, 175, "#eeeeee"),
+        new Cup(600, 525, "#eeeeee")
       ];
     }
 
     if (this.level === 5) {
-      this.b1 = new Ball(900, 200);
+      this.b1 = new Ball(1050, 260, -2, 0);
       this.cups = [
-        new Cup(900, 400, "#fd5f00"),
-        new Cup(100, 300, "#fd5f00"),
-        new Cup(200, 200, "#fd5f00"),
-        new Cup(300, 400, "#fd5f00"),
-        new Cup(500, 200, "#fd5f00"),
-        new Cup(700, 400, "#fd5f00")
+        new Cup(850, 260, "#fd5f00"),
+        new Cup(600, 260, "#fd5f00"),
+        new Cup(350, 260, "#fd5f00"),
+        new Cup(850, 435, "#fd5f00"),
+        new Cup(600, 435, "#fd5f00"),
+        new Cup(350, 435, "#fd5f00")
       ];
     }
 
     if (this.level === 6) {
-      this.b1 = new Ball(900, 200);
+      this.b1 = new Ball(1100, 175, -2, 0);
       this.cups = [
-        new Cup(900, 400, "#76b39d"),
-        new Cup(100, 300, "#76b39d"),
-        new Cup(200, 200, "#76b39d"),
-        new Cup(400, 400, "#76b39d"),
-        new Cup(400, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d")
+        new Cup(900, 175, "#76b39d"),
+        new Cup(300, 175, "#76b39d"),
+        new Cup(300, 175, "#76b39d"),
+        new Cup(300, 175, "#76b39d"),
+        new Cup(300, 525, "#76b39d"),
+        new Cup(300, 525, "#76b39d"),
+        new Cup(300, 525, "#76b39d"),
+        new Cup(900, 525, "#76b39d"),
+        new Cup(900, 525, "#76b39d"),
+        new Cup(900, 525, "#76b39d")
       ];
     }
 
     if (this.level === 7) {
-      this.b1 = new Ball(700, 200);
+      this.b1 = new Ball(900, 400, -2, 0);
       this.cups = [
         new Cup(700, 400, "#fd5f00"),
         new Cup(600, 300, "#fd5f00"),
@@ -95,28 +97,28 @@ class Game {
       ];
     }
 
-    if (this.level === 8) {
-      this.b1 = new Ball(700, 200);
-      this.cups = [
-        new Cup(700, 400, "#76b39d"),
-        new Cup(100, 300, "#76b39d"),
-        new Cup(200, 200, "#76b39d"),
-        new Cup(400, 400, "#76b39d"),
-        new Cup(400, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d"),
-        new Cup(600, 400, "#76b39d"),
-        new Cup(600, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d"),
-        new Cup(500, 500, "#76b39d")
-      ];
-    }
+    // if (this.level === 8) {
+    //   this.b1 = new Ball(700, 200);
+    //   this.cups = [
+    //     new Cup(700, 400, "#76b39d"),
+    //     new Cup(100, 300, "#76b39d"),
+    //     new Cup(200, 200, "#76b39d"),
+    //     new Cup(400, 400, "#76b39d"),
+    //     new Cup(400, 400, "#76b39d"),
+    //     new Cup(600, 400, "#76b39d"),
+    //     new Cup(600, 400, "#76b39d"),
+    //     new Cup(600, 400, "#76b39d"),
+    //     new Cup(600, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d"),
+    //     new Cup(600, 400, "#76b39d"),
+    //     new Cup(600, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d"),
+    //     new Cup(500, 500, "#76b39d")
+    //   ];
+    // }
   }
 
   // DRAW different Screens bTW the GAME
@@ -138,19 +140,18 @@ class Game {
     if (this.isGameOver) {
       ctx.save();
 
-      ctx.globalAlpha = 0.5;
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       ctx.globalAlpha = 1;
-      ctx.fillStyle = "white";
+      ctx.fillStyle = "#eeeeee";
       ctx.font = "120px Permanent Marker";
       ctx.textAlign = "center";
       ctx.fillText("Game over", CANVAS_WIDTH / 2, 300);
-      ctx.fillStyle = "green";
-      ctx.font = "40px Permanent Marker";
+      ctx.fillStyle = "#94fc13";
+      ctx.font = "30px Permanent Marker";
       ctx.textAlign = "center";
-      ctx.fillText("try again", CANVAS_WIDTH / 2, 400);
-      ctx.fillStyle = "#fd5f00";
+      ctx.fillText("Come on, You can be better!", CANVAS_WIDTH / 2, 400);
+      ctx.fillStyle = "#ff5722";
       ctx.font = "20px Permanent Marker";
       ctx.textAlign = "center";
       ctx.fillText("< space >", CANVAS_WIDTH / 2, 500);
@@ -176,8 +177,6 @@ class Game {
         this.cups[i].update();
       }
     }
-    // if (this.isGameOver)
-    //   this.page === "home"
   }
 
   // SWITCH BTW THE DIFFERENT STATES
@@ -191,10 +190,10 @@ class Game {
       this.framesBeforeNextPage = undefined; // The user has to trigger the event to go to the next page
     } else if (this.page === "guess") {
       this.page = "show-winner";
-      this.framesBeforeNextPage = 100;
+      this.framesBeforeNextPage = 150;
       // play sound
     } else if (this.page === "show-winner") {
-      if (this.level < 8) {
+      if (this.level < 7) {
         this.level++;
         this.startGame();
       }
@@ -202,8 +201,6 @@ class Game {
         this.page = "win";
       }
     }
-    //else if (this.isGameOver)
-    //this.framesBeforeNextPage = undefined;
   }
 
   guess(x, y) {
@@ -223,27 +220,16 @@ class Game {
           distMin = curDist
           iClosestCup = i
         }
-
-        // WHAT IS THE INDEX of the CUP WITH THE SHORTEST DISTANCE
-
-        // distance(this.cups[i], MouseEvent) <
-
-        // this.cup[i].x
-        // this.cup[i].y
-
-        // mouseclick.x
-        // mouseclick.y
-
-        console.log(this.cups[i]);
-
       }
-      this.cups[iClosestCup].color = "green";
+      this.cups[iClosestCup].color = "#94fc13";
 
       // If the user has selected the right cup
       if (iClosestCup === 0) {
         this.goToNextPage();
       } else {
+        this.cups.color = "red";
         this.isGameOver = true;
+
       }
     }
   }

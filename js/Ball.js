@@ -1,11 +1,12 @@
 class Ball {
-  constructor(x, y) {
+  constructor(x, y, vx, vy) {
     this.radius = 25;
     this.x = x;
     this.y = y;
-    this.vy = 2;
+    this.vy = vy;
+    this.vx = vx;
     this.img = new Image();
-    this.img.src = "/Cups-Balls/images/55085_logo-ironhack copy.png" 
+    this.img.src = "/Cups-Balls/images/circle-cropped.png" 
 
   }
   draw(ctx) {
@@ -21,7 +22,7 @@ class Ball {
     // Picture
 
     ctx.translate(this.x, this.y);
-    let size = 3 * this.radius;
+    let size = 2.5 * this.radius;
     ctx.drawImage(this.img, -size / 2, -size / 2, size, size);
 
 
@@ -30,5 +31,6 @@ class Ball {
 
   update(ctx) {
     this.y += this.vy;
+    this.x += this.vx;
   }
 }

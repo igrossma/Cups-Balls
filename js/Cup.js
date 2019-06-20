@@ -4,7 +4,7 @@ class Cup {
     this.x = initialX;
     this.y = initialY;
     this.vx = Math.floor(Math.random()*50);
-    this.vy = Math.floor(Math.random()*60);
+    this.vy = Math.floor(Math.random()*50);
     this.color = color;
   }
 
